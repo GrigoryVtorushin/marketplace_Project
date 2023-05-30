@@ -20,6 +20,7 @@
       </div>
     </header>
   </div>
+  <div v-if="favourite.length">
   <h1 style="margin-bottom: 50px">Избранное</h1>
   <my-select
       style=""
@@ -62,6 +63,8 @@
       </div>
     </div>
   </div>
+  </div>
+  <h1 v-else>В вашем избранном пусто.</h1>
 </template>
 
 <script>
@@ -211,9 +214,9 @@ export default {
 }
 .catalog-list {
   display: flex;
+  align-items: flex-start;
   flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+
 
 }
 .catalog {
