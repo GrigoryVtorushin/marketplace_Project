@@ -17,7 +17,9 @@
     </header>
   </div>
   <div class="product-page-body">
-    <img class="product-image" :src="products_item.image" style="max-width: 350px">
+    <div class="product-image">
+      <img :src="products_item.image" style="max-width: 300px">
+    </div>
     <div class="product-info">
       <p class="product-title">{{products_item.title}}</p>
       <p class="product-rating">{{ this.products[`${this.$route.params.id - 1}`].rating.rate }}⭐ ({{this.products[`${this.$route.params.id - 1}`].rating.count}})</p>
@@ -106,8 +108,8 @@ export default {
 <style>
 .product-page-body{
   display: flex;
-  margin: 100px 200px;
-  justify-content: space-between;
+  align-items: center;
+
 }
 .product-title{
   font-size: 30px;
@@ -122,7 +124,8 @@ export default {
   background: #ff5941;
   color: white;
   font-size: 28px;
-  width: 300px;
+  max-width: 300px;
+  margin-left: 80px;
 
 }
 .product-price{
@@ -132,8 +135,11 @@ export default {
 .product-image{
   box-shadow: 0 0 8px 0 lightgray;
   padding: 40px;
-  margin-right: 40px;
+  margin: 0 auto;
 
+}
+.product-info{
+  margin: 0 auto;
 }
 .product-description{
   margin-left: 50px;
@@ -147,8 +153,10 @@ export default {
   margin-left: 20px;
   cursor: pointer;
 }
+
 .product-btns{
   display: flex;
+
 }
 
 </style>
