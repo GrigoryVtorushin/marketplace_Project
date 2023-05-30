@@ -245,16 +245,15 @@ export default {
   color: #ff5941;
 }
 .catalog-list {
-  align-items: flex-start;
   display: flex;
   flex-wrap: wrap;
-
+  
 }
 .catalog-body{
 }
 .catalog {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
 
 
 }
