@@ -22,18 +22,7 @@
   </div>
   <div v-if="favourite.length">
   <h1 style="margin-bottom: 50px">Избранное</h1>
-  <my-select
-      style=""
-      :selected="selectedSort"
-      :options="[{name: 'По возрастанию цены', value: 'price'},
-                   {name: 'По убыванию цены', value: 'price'},
-                   {name: 'По рейтингу', value: 'rating'},
-                   {name: 'По популярности', value: 'rating'},
-                   {name: 'По названию', value: 'title'},
-                   {name: 'Сбросить', value: 'price'}
-                   ]"
-      @select="sortProducts"
-  />
+
 
   <div class="catalog">
 
@@ -51,7 +40,18 @@
 
     </div>
     <div class="catalog-body">
-
+      <my-select
+          style="margin-bottom: 10px"
+          :selected="selectedSort"
+          :options="[{name: 'По возрастанию цены', value: 'price'},
+                   {name: 'По убыванию цены', value: 'price'},
+                   {name: 'По рейтингу', value: 'rating'},
+                   {name: 'По популярности', value: 'rating'},
+                   {name: 'По названию', value: 'title'},
+                   {name: 'Сбросить', value: 'price'}
+                   ]"
+          @select="sortProducts"
+      />
       <div class="catalog-list">
         <catalog-item
             v-for="product in searchedProducts"
@@ -221,7 +221,7 @@ export default {
 }
 .catalog {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
 
 }
 .catalog-filters {
