@@ -68,7 +68,7 @@
               @change="setRangeOfPrice"
           ></p>
           <div class="filter-by-price-content-btns">
-            <div class="filter-by-price-content-btn" @click="minPrice=0; maxPrice=1000">Сбросить</div>
+            <div class="filter-by-price-content-btn" @click="resetRangeOfPrice">Сбросить</div>
             <div class="filter-by-price-content-btn" @click="setRangeOfPrice; this.isFilterByPriceVisible = false">Готово</div>
           </div>
 
@@ -209,7 +209,12 @@ export default {
         this.minPrice = tmp
       }
       this.sortByCategories()
-
+    },
+    resetRangeOfPrice() {
+      this.maxPrice = 1000;
+      this.minPrice = 0;
+      this.sortByCategories()
+      this.hideFilterByPrice()
     },
 
 
