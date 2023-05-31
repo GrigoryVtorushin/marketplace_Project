@@ -95,8 +95,6 @@ export default {
 .cart{
   display: flex;
   align-items: center;
-
-
 }
 .cart-items{
   margin: 0 auto;

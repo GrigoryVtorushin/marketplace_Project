@@ -26,7 +26,7 @@
 
   <div class="catalog">
 
-    <div class="catalog-filters">
+    <div class="catalog-categories">
 
       <h2>Категории:</h2>
       <div class="categories" v-for="category in this.categories">

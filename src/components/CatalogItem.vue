@@ -2,7 +2,7 @@
   <div class="catalog-item">
     <div
         @click="$router.push(`/catalog/${product_data.id}`)"
-        style="cursor: pointer"
+        style="cursor: pointer; height: 350px"
     >
       <img :src="product_data.image" style="max-width: 200px; max-height: 200px" />
       <p class="catalog-item-title">{{ product_data.title }}</p>
@@ -23,8 +23,8 @@
         @click="$router.push('/cart')"
     >
 
-    <img v-if="this.favourite.includes(product_data)" src="@/assets/red-heart.svg" class="catalog-item-add-to-favourite-btn" @click="addItemToFavourite(product_data)">
-    <img v-if="!this.favourite.includes(product_data)" src="@/assets/gray-heart.svg" class="catalog-item-add-to-favourite-btn" @click="addItemToFavourite(product_data)">
+    <img v-if="favourite.includes(product_data)" src="@/assets/red-heart.svg" class="catalog-item-add-to-favourite-btn" @click="addItemToFavourite(product_data)">
+    <img v-if="!favourite.includes(product_data)" src="@/assets/gray-heart.svg" class="catalog-item-add-to-favourite-btn" @click="addItemToFavourite(product_data)">
 
   </div>
 </template>
@@ -55,7 +55,6 @@ export default {
 
     addItemToFavourite() {
       this.$emit('addItemToFavourite' ,this.product_data)
-      this.favouriteBtnText = 'В избранном'
     }
 
   },

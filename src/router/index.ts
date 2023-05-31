@@ -3,9 +3,13 @@ import Catalog from "@/components/Catalog.vue";
 import Cart from "@/components/Cart.vue";
 import ProductPage from "@/pages/ProductPage.vue"
 import FavouritePage from '@/pages/FavouritePage.vue'
-
+import MainPage from '@/pages/MainPage.vue'
 
 const routes = [
+    {
+        path: '/',
+        component: MainPage
+    },
     {
         path: '/catalog',
         component: Catalog

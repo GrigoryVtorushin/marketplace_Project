@@ -24,27 +24,8 @@
 
   <div class="catalog">
 
-    <div class="catalog-filters">
+    <div class="catalog-categories">
 
-      <h2>Цена, $</h2>
-      <div class="filter-by-price">
-        <div>
-          <p>От</p>
-          <input
-              type="text"
-              v-model.number="minPrice"
-              @change="setRangeOfPrice"
-          >
-        </div>
-        <div>
-          <p>До</p>
-          <input
-              type="text"
-              v-model.number="maxPrice"
-              @change="setRangeOfPrice"
-          >
-        </div>
-      </div>
 
       <h2>Категории:</h2>
       <div class="categories" v-for="category in this.categories">
@@ -58,6 +39,7 @@
 
     </div>
     <div class="catalog-body">
+      <div class="catalog-filters" >
       <my-select
           style="margin-bottom: 20px"
           :selected="selectedSort"
@@ -70,6 +52,29 @@
                    ]"
           @select="sortProducts"
       />
+
+      <div class="filter-by-price">
+        <div class="filter-by-price-btn" @click.stop="this.showFilterByPrice">Цена, $</div>
+        <div class="filter-by-price-content" v-if="isFilterByPriceVisible">
+          <p>От:<input
+              type="text"
+              v-model.number="minPrice"
+              @change="setRangeOfPrice"
+          ></p>
+
+          <p>До:<input
+              type="text"
+              v-model.number="maxPrice"
+              @change="setRangeOfPrice"
+          ></p>
+          <div class="filter-by-price-content-btns">
+            <div class="filter-by-price-content-btn" @click="minPrice=0; maxPrice=1000">Сбросить</div>
+            <div class="filter-by-price-content-btn" @click="setRangeOfPrice; this.isFilterByPriceVisible = false">Готово</div>
+          </div>
+
+        </div>
+      </div>
+      </div>
       <div class="catalog-list">
         <catalog-item
             v-for="product in searchedProducts"
@@ -120,6 +125,7 @@ export default {
       searchQuery: '',
       toFavourite: 'Избранное',
       toFavouriteFlag: false,
+      isFilterByPriceVisible: false
     }
   },
 
@@ -168,6 +174,13 @@ export default {
       }
     },
 
+    showFilterByPrice() {
+      this.isFilterByPriceVisible = !this.isFilterByPriceVisible
+    },
+    hideFilterByPrice(){
+      this.isFilterByPriceVisible= false
+    },
+
     ...mapActions([
         'fetchProducts',
         'addToCart',
@@ -196,6 +209,7 @@ export default {
         this.minPrice = tmp
       }
       this.sortByCategories()
+
     },
 
 
@@ -247,7 +261,7 @@ export default {
 .catalog-list {
   display: flex;
   flex-wrap: wrap;
-  
+
 }
 .catalog-body{
 }
@@ -257,8 +271,14 @@ export default {
 
 
 }
-.catalog-filters {
-  margin-right: 30px;
+.catalog-filters{
+  display: flex;
+
+}
+.catalog-categories {
+  padding: 30px;
+
+  background-color: aliceblue;
 }
 .categories {
 
@@ -271,11 +291,36 @@ export default {
   color: #ff5941;
 }
 .filter-by-price{
-  display: flex;
+  padding: 0 20px;
 }
 
 .filter-by-price input{
   max-width: 60px;
-  margin: 0 10px;
+  margin: 0 5px;
+}
+.filter-by-price-btn{
+  border: solid 1px #aeaeae;
+  padding: 8px;
+  cursor: pointer;
+}
+.filter-by-price-content{
+  border: solid 1px #aeaeae;
+  padding: 16px;
+  z-index: 100;
+  position: absolute;
+  background-color: white;
+
+}
+.filter-by-price-content-btns{
+  display: flex;
+
+}
+.filter-by-price-content-btn{
+  padding: 8px;
+  border: solid 1px #aeaeae;
+  margin: 0 8px;
+  width: 80px;
+  cursor: pointer;
+
 }
 </style>
